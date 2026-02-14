@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  love-lens:
+    build: .
+    container_name: love-lens
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=file:/app/db/prod.db
+      - AUTH_SECRET=${AUTH_SECRET}
+      - AUTH_GOOGLE_ID=${AUTH_GOOGLE_ID}
+      - AUTH_GOOGLE_SECRET=${AUTH_GOOGLE_SECRET}
+    volumes:
+      - ./db:/app/db
+      - ./public/uploads:/app/public/uploads
